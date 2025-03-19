@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  background-color: oklch(0.278 0.033 256.848);
+  font-family: "Roboto", sans-serif;
+}
+
+#root{
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  justify-content: flex-start;
+}
+.header {
+  color: #fff;
+  width: 100%;
+  background-color: black;
+  padding: 1rem;
+  border-bottom: 5px solid oklch(0.278 0.033 256.848);
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.editor.collapsed {
+  max-width:  8rem;
+  overflow: hidden !important;
+}
+.pane{
+width: 100%;
+  padding: 0 1rem;
+
+}
+.top-pane {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.editor {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.bottom-pane{
+  position: relative;
+
+}
+iframe {
+  border: none;
+  background-color: #fff;
+  width: 100%;
+  height: 41rem;
+  min-height: 100%;
+}
+.editorheader {
+  padding: 0.5rem .5rem;
+  color: #fff;
+  display: flex;
+  /* gap: .5rem; */
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: black;
+}
+@media (max-width:600px) {
+ .top-pane{
+  flex-direction: column;
+
+ }
+ .editor.collapsed {
+  max-height:  8rem;
+  max-width: 100%;
+  overflow: hidden !important;
+} 
+}
