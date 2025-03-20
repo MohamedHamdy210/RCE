@@ -8,7 +8,7 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-#root{
+#root {
   display: flex;
   flex-direction: column;
   height: 100dvh;
@@ -24,15 +24,13 @@ body {
   justify-content: space-between;
 }
 
-
 .editor.collapsed {
-  max-width:  8rem;
+  max-width: 8rem;
   overflow: hidden !important;
 }
-.pane{
-width: 100%;
+.pane {
+  width: 100%;
   padding: 0 1rem;
-
 }
 .top-pane {
   display: flex;
@@ -43,19 +41,17 @@ width: 100%;
   flex-grow: 1;
   flex-shrink: 1;
 }
-.bottom-pane{
+.bottom-pane {
   position: relative;
-
 }
 iframe {
   border: none;
   background-color: #fff;
   width: 100%;
-  height: 41rem;
-  min-height: 100%;
+  height: 100%;
 }
 .editorheader {
-  padding: 0.5rem .5rem;
+  padding: 0.5rem 0.5rem;
   color: #fff;
   display: flex;
   /* gap: .5rem; */
@@ -64,14 +60,13 @@ iframe {
   width: 100%;
   background-color: black;
 }
-@media (max-width:600px) {
- .top-pane{
-  flex-direction: column;
-
- }
- .editor.collapsed {
-  max-height:  8rem;
-  max-width: 100%;
-  overflow: hidden !important;
-} 
+@media (max-width: 600px) {
+  .top-pane {
+    flex-direction: column;
+  }
+  .editor.collapsed {
+    max-height: 8rem;
+    max-width: 100%;
+    overflow: hidden !important;
+  }
 }

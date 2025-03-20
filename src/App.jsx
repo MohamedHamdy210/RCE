@@ -1,6 +1,6 @@
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 import Editor from "./components/Editor";
-import {Button} from "@mui/material"
+import { Button } from "@mui/material";
 function App() {
   const [html, setHtml] = useState(
     `${
@@ -8,62 +8,18 @@ function App() {
       "<!-- write your code here --!>"
     }`
   );
-  const [css, setCss] = useState(`${JSON.parse(localStorage.getItem("css"))||"/*write your code here*/"}`);
-  const [js, setJs] = useState(`${JSON.parse(localStorage.getItem("js")) || "//write your code here"}`
+  const [css, setCss] = useState(
+    `${JSON.parse(localStorage.getItem("css")) || "/*write your code here*/"}`
+  );
+  const [js, setJs] = useState(
+    `${JSON.parse(localStorage.getItem("js")) || "//write your code here"}`
   );
 
-  return (
-    <>
-    
-      <header className="header">
-        <h2>RCE</h2>
-        <Button
-        variant="contained"
-          onClick={() => {
-            localStorage.removeItem("css");
-            localStorage.removeItem("html");
-            localStorage.removeItem("js");
-            setCss("");
-            setHtml("");
-            setJs("");
-          }}
-        >
-          Reset
-        </Button>
-      </header>
-      
-        <div className="pane top-pane">
-          <Editor
-            code={html}
-            setCode={(code) => {
-              localStorage.setItem("html", JSON.stringify(code));
-              setHtml(code);
-            }}
-            name="HTML"
-            mode="htmlmixed"
-          />
-          <Editor
-            code={css}
-            setCode={(code) => {
-              localStorage.setItem("css",JSON.stringify(code))
-              setCss(code);
-            }}
-            name="CSS"
-            mode="css"
-          />
-          <Editor
-            code={js}
-            setCode={(code) => {
-              localStorage.setItem("js", JSON.stringify(code));
-              setJs(code);
-            }}
-            name="JS"
-            mode="javascript"
-          />
-        </div>
-        <div className=" pane bottom-pane">
-          <iframe
-            srcDoc={`
+  const [srcDoc, setSrcDoc] = useState("");
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSrcDoc(
+        `
         <!doctype html>
         <html lang="en">
             <head>
@@ -77,10 +33,65 @@ function App() {
               </body>
         </html>
 
-            `}
-          />
-        </div>
-      
+         `
+      );
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, [html, css, js]);
+  const reset = () => {
+    localStorage.removeItem("css");
+    localStorage.removeItem("html");
+    localStorage.removeItem("js");
+    setCss("");
+    setHtml("");
+    setJs("");
+  };
+  return (
+    <>
+      <header className="header">
+        <h2>OCE</h2>
+        <Button
+          variant="contained"
+          onClick={() => {
+            reset();
+          }}
+        >
+          Reset
+        </Button>
+      </header>
+
+      <div className="pane top-pane">
+        <Editor
+          code={html}
+          setCode={(code) => {
+            localStorage.setItem("html", JSON.stringify(code));
+            setHtml(code);
+          }}
+          name="HTML"
+          mode="htmlmixed"
+        />
+        <Editor
+          code={css}
+          setCode={(code) => {
+            localStorage.setItem("css", JSON.stringify(code));
+            setCss(code);
+          }}
+          name="CSS"
+          mode="css"
+        />
+        <Editor
+          code={js}
+          setCode={(code) => {
+            localStorage.setItem("js", JSON.stringify(code));
+            setJs(code);
+          }}
+          name="JS"
+          mode="javascript"
+        />
+      </div>
+
+      <iframe srcDoc={srcDoc} />
     </>
   );
 }
