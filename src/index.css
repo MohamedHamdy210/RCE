@@ -28,22 +28,22 @@ body {
   max-width: 8rem;
   overflow: hidden !important;
 }
-.pane {
+
+.top-pane {
   width: 100%;
   padding: 0 1rem;
-}
-.top-pane {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  
 }
 .editor {
   flex-grow: 1;
   flex-shrink: 1;
+  width: 32%;
+  max-width: 70rem;
 }
-.bottom-pane {
-  position: relative;
-}
+
 iframe {
   border: none;
   background-color: #fff;

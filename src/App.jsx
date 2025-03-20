@@ -61,7 +61,7 @@ function App() {
         </Button>
       </header>
 
-      <div className="pane top-pane">
+      <div className="top-pane">
         <Editor
           code={html}
           setCode={(code) => {
